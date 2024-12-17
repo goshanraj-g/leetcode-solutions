@@ -1,10 +1,21 @@
 class Solution(object):
     def isAnagram(self, s, t):
-        smap = {}
-        tmap = {}
+        list1 = []
+        list2 = []
         for char in s:
-            smap[char] = smap.get(char, 0) + 1
+            list1.append(char)
         for char in t:
-            tmap[char] = tmap.get(char, 0) + 1
-        return smap == tmap
+            list2.append(char)
+        list1.sort()
+        list2.sort()
+        if list1 == list2:
+            return True
+        else:
+            return False
+ 
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
         
