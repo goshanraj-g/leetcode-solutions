@@ -1,9 +1,11 @@
 class Solution(object):
     def groupAnagrams(self, strs):
-        res = defaultdict(list)
-        for s in strs:
-            count= [0]*26
-            for c in s:
-                count[ord(c)-ord("a")]+=1
-            res[tuple(count)].append(s)
-        return res.values()
+        anagrams = {}
+        for word in strs:
+            sorted_word = str(sorted(word))
+            
+            if sorted_word not in anagrams:
+                anagrams[sorted_word] = [word]
+            else:
+                anagrams[sorted_word].append(word)
+        return list(anagrams.values())
