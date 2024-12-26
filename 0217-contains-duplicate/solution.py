@@ -5,8 +5,3 @@ class Solution(object):
             return False
         return True
 
-        """
-        :type nums: List[int]
-        :rtype: bool
-        """
-        
