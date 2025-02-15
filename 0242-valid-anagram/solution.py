@@ -2,14 +2,19 @@ class Solution(object):
     def isAnagram(self, s, t):
         if len(s) != len(t):
             return False
-        countS, countT = {}, {}
+        dict1, dict2 = {}, {}
 
-        for i in range(len(s)):
-            countS[s[i]] = 1 + countS.get(s[i], 0)
-            countT[t[i]] = 1 + countT.get(t[i], 0)
-        for c in countS:
-            if countS[c] != countT.get(c, 0):
-                return False
+        for char in s:
+            if char in dict1:
+                dict1[char] += 1
+            else:
+                dict1[char] = 1
+        for char in t:
+            if char in dict2:
+                dict2[char] +=1
+            else:
+                dict2[char] = 1
+        return dict1 == dict2
 
         return True
 
