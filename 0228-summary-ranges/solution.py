@@ -8,19 +8,19 @@ class Solution(object):
             return []
 
         res = []
-        start = nums[0]  
+        start = nums[0]
 
         for i in range(1, len(nums)):
-            if nums[i] != nums[i-1] + 1: 
+            if nums[i] != nums[i-1] + 1:
                 if start == nums[i-1]:
-                    res.append(str(start))
+                    res.append(f"{start}")
                 else:
-                    res.append(str(start) + "->" + str(nums[i-1])) 
+                    res.append(f"{start}->{nums[i-1]}")
                 start = nums[i] 
 
         if start == nums[-1]:
-            res.append(str(start))  
+            res.append(f"{start}")
         else:
-            res.append(str(start) + "->" + str(nums[-1]))  
-
+            res.append(f"{start}->{nums[-1]}") 
         return res
+
