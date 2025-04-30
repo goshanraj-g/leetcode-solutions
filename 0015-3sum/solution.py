@@ -1,26 +1,24 @@
-class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
+class Solution(object):
+    def threeSum(self, nums):
         res = []
         nums.sort()
-        n = len(nums)
 
-        for i in range(n):
-            if nums[i] > 0:
-                break
-            elif i > 0 and nums[i] == nums[i - 1]:
+        for i, a in enumerate(nums):
+            # where i is the index, and a is the first value
+            if i > 0 and a == nums[i - 1]:
+                #checking for duplicates
                 continue
-            lo, hi = i + 1, n - 1
-            while (lo < hi):
-                summ = nums[i] + nums[lo] + nums[hi]
-                if summ == 0:
-                    res.append((nums[i], nums[lo], nums[hi]))
-                    lo, hi = lo + 1, hi - 1
-                    while lo < hi and nums[lo] == nums[lo-1]:
-                        lo += 1
-                    while lo < hi and nums[hi] == nums[hi+1]:
-                        hi -=1
-                elif summ < 0:
-                    lo += 1
+
+            l, r = i + 1, len(nums) - 1
+            while l < r:
+                threeSum = a + nums[l] + nums[r]
+                if threeSum > 0:
+                    r-=1
+                elif threeSum < 0:
+                    l+=1
                 else:
-                    hi -= 1
+                    res.append([a, nums[l], nums[r]])
+                    l+=1
+                    while nums[l] == nums[l-1] and l < r:
+                        l+=1
         return res
