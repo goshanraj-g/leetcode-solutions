@@ -1,20 +1,21 @@
-class Solution(object):
-    def lengthOfLongestSubstring(self, s):
-        if not s:
-            return 0
-        r = 1
-        res = s[0]
-        curMax = 0
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l = 0
+        longest = 0
+        setC = set()
+        n = len(s)
 
-        while r < len(s):
-            if s[r] not in res:
-                res += s[r]
-                r += 1
-            else:
-                curMax = max(curMax, len(res))
-                dup_index = res.index(s[r])
-                res = res[dup_index + 1:] + s[r]
-                r += 1
+        for r in range(n):
+            while s[r] in setC:
+                setC.remove(s[l])
+                l += 1
+            
+            w = (r - l + 1)
 
-        return max(curMax, len(res))
+            longest = max(longest, w)
+            setC.add(s[r])
+        
+        return longest
 
+         
+        
