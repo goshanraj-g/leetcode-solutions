@@ -4,17 +4,16 @@ class Solution:
 
         while l <= r:
             m = (l + r) // 2
-            if target == nums[m]:
+            if nums[m] == target:
                 return m
-            if nums[l] <= nums[m]: # IF IN LEFT SORTED
-                if nums[m] < target or nums[l] > target: # CHECK IF TARGET SHOULD BE IN RS
+            if nums[l] <= nums[m]:
+                if target > nums[m] or target < nums[l]:
                     l = m + 1
                 else:
                     r = m - 1
-            else: # IF IN RIGHT SORTED
-                if nums[r] < target or nums[m] > target: # CHECK IF TARGET SHOULD BE IN LS
+            else:
+                if target < nums[m] or target > nums[r]:
                     r = m - 1
                 else:
                     l = m + 1
         return -1
-        
