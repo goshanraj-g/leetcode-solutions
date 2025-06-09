@@ -1,7 +1,7 @@
 class TimeMap:
 
     def __init__(self):
-        self.store = {} # key: List[val, timestamp]
+        self.store = {} # key -> string, value -> list of []
         
 
     def set(self, key: str, value: str, timestamp: int) -> None:
@@ -23,3 +23,5 @@ class TimeMap:
             else:
                 r = m - 1
         return res
+        
+
