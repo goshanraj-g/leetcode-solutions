@@ -9,9 +9,8 @@ class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         res = []
         q = collections.deque()
-
         q.append(root)
-
+        
         while q:
             qLen = len(q)
             level = []
@@ -23,12 +22,6 @@ class Solution:
                     q.append(node.right)
             if level:
                 res.append(level)
+        
         return res
-
-
-        # initialize a queue
-        # process the top node, add it to res
-        # pop from queue, and add the left and right value
-        # process those nodes, add it to res, 
-        # pop left from queue, and add the left and right value
-        # keep going until queue is empty and then return res
+        
