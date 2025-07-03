@@ -9,7 +9,7 @@
 # **Solution**
 <pre>
 class Solution(object):
-  mergeTwoLists(self, list1, list2):
+  def mergeTwoLists(self, list1, list2):
     dummy = ListNode()
     tail = dummy
     cur1, cur2 = list1, list2
@@ -25,12 +25,12 @@ class Solution(object):
         tail.next = cur1
     else:
         tail.next = cur2
-  return dummy.next
+    return dummy.next
 </pre>
 
 ## **Time and Space Complexity**
-**Time Complexity: O(n+m)**
-**Space Complexity: O(n+m), where n and m are the lengths of the two lists**
+**Time Complexity: O(n+m), where n and m are the lengths of the two lists**
+**Space Complexity: O(1), there are no new allocations of memory (we are just relinking existing nodes), except for pointers which are constant time**
 
 ## **Key Ideas**
-This is a simple **Linked List** problem
+This is a simple **Singly Linked List** problem
