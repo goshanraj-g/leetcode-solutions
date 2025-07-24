@@ -7,10 +7,12 @@
 
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        # queue is needed for BFS (insert to the right, and popping from the left)
         res = []
+
         q = collections.deque()
         q.append(root)
-        
+
         while q:
             qLen = len(q)
             level = []
@@ -22,6 +24,4 @@ class Solution:
                     q.append(node.right)
             if level:
                 res.append(level)
-        
         return res
-        
