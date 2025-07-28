@@ -7,21 +7,19 @@
 
 class Solution:   
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        s = root
-        t = subRoot
-        if not t:
-            return True
+        t = root
+        s = subRoot
         if not s:
-            return False
-        if self.sameTree(s, t):
             return True
-
-        return (self.isSubtree(s.left, t) or
-        self.isSubtree(s.right, t))
+        if not t:
+            return False
+        if self.sameTree(t, s):
+            return True
+        return (self.isSubtree(t.left, s) or self.isSubtree(t.right, s))
         
     def sameTree(self, s, t):
         if not s and not t:
             return True
-
         if s and t and s.val == t.val:
             return (self.sameTree(s.left, t.left) and self.sameTree(s.right, t.right))
+        
