@@ -7,18 +7,15 @@
 
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
-
-        # going to be  DFS, where you go down each path, and determine if it's a good node, and add 1
-        def dfs(root, cur_max):
-            if root is None:
+        def dfs(node, cur_max):
+            if not node:
                 return 0
-            if root.val >= cur_max:
+            if node.val >= cur_max:
                 count = 1
+                cur_max = node.val
             else:
                 count = 0
-            cur_max = max(cur_max, root.val)
-            right = dfs(root.right, cur_max)
-            left = dfs(root.left, cur_max)
-            return count + right + left
+            left = dfs(node.left, cur_max)
+            right = dfs(node.right, cur_max)
+            return count + left + right
         return dfs(root, root.val)
-
