@@ -6,10 +6,9 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 """
 
-from typing import Optional
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        if not node:
+        if node is None:
             return None
         
         old_to_new = {}
@@ -17,12 +16,14 @@ class Solution:
         def dfs(node):
             if node in old_to_new:
                 return old_to_new[node]
-            
-            copy = Node(node.val)
-            old_to_new[node] = copy
+            copy = Node(node.val) # create the copy
+            old_to_new[node] = copy # mark it as seen
+
             for nei in node.neighbors:
                 copy.neighbors.append(dfs(nei))
             return copy
-        
+
         return dfs(node)
+
+
         
