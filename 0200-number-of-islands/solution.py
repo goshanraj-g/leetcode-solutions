@@ -1,29 +1,26 @@
+from collections import deque
 class Solution:
-    def numIslands(self, grid):
-        if not grid:
-            return 0
+    def numIslands(self, grid: List[List[str]]) -> int:
+        NRows = len(grid)
+        NCols = len(grid[0])
+        queue = deque()
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+        num_of_islands = 0
+
+        for i in range(NRows):
+            for j in range(NCols):
+
+                if grid[i][j] == '1':
+                    grid[i][j] = '0'
+                    queue.append((i, j))
+                    num_of_islands += 1
+
+                    while queue:
+                        r, c = queue.popleft()
+                        for direction in directions:
+                            nr, nc = r + direction[0], c + direction[1]
+                            if 0 <= nr < NRows and 0 <= nc < NCols and grid[nr][nc] == '1':
+                                queue.append((nr, nc))
+                                grid[nr][nc] = '0'
         
-        rows, cols = len(grid), len(grid[0])
-        visit = set()
-        islands = 0
-
-        def bfs(r, c):
-            q = collections.deque()
-            visit.add((r, c))
-            q.append((r, c))
-
-            while q:
-                r, c = q.popleft() # popping right would mean that this would be an iterative DFS solution
-                directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
-
-                for dr, dc in directions:
-                    if (r + dr) in range(rows) and (c + dc) in range(cols) and grid[r+dr][c+dc] == '1' and ((r+dr, c + dc) not in visit):
-                        q.append((r + dr, c + dc))
-                        visit.add((r + dr, c + dc))
-
-        for r in range(rows):
-            for c in range(cols):
-                if grid[r][c] == '1' and (r, c) not in visit:
-                    bfs(r, c)
-                    islands += 1
-        return islands
+        return num_of_islands
