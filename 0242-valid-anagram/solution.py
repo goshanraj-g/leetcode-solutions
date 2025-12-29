@@ -1,11 +1,10 @@
-class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        map1 = {}
-        map2 = {}
+class Solution(object):
+    def isAnagram(self, s, t):
+        smap = {}
+        tmap = {}
         for char in s:
-            map1[char] = map1.get(char, 0) + 1
+            smap[char] = smap.get(char, 0) + 1
         for char in t:
-            map2[char] = map2.get(char, 0) + 1
-        return map1 == map2
-
+            tmap[char] = tmap.get(char, 0) + 1
+        return smap == tmap
         
