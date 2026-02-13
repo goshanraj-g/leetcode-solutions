@@ -11,3 +11,10 @@ class Solution:
             current_window_size = r - l + 1
             maxSubstring = max(maxSubstring, current_window_size)
         return maxSubstring     
+
+
+        char_set = set()
+        l = 0
+        
+\
+
