@@ -1,38 +1,26 @@
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        # first, sort the array
-        # we can start with the first element, and find two other numbers 
-        # if not found, move onto next number
-        # ensure that the number is not a duplicate of the previous numbers
-        # use a set to make sure no duplicates 
-
-        nums.sort()
-        first_dup = set()
         res = []
+        nums.sort()
+        n = len(nums)
 
-        for n in range(len(nums)):
-            if nums[n] in first_dup:
+        for i in range(n):
+            if nums[i] > 0:
+                break
+            elif i > 0 and nums[i] == nums[i - 1]:
                 continue
-            first_dup.add(nums[n])
-
-            l, r = n + 1, len(nums) - 1
-
-            while l < r:
-                threesum = nums[l] + nums[r] + nums[n]
-
-                if threesum == 0:
-                    res.append([nums[n], nums[l], nums[r]])
-                    l += 1
-                    while l < r and nums[l] == nums[l - 1]:
-                        l += 1
-                elif threesum > 0:
-                    r -= 1
+            lo, hi = i + 1, n - 1
+            while (lo < hi):
+                summ = nums[i] + nums[lo] + nums[hi]
+                if summ == 0:
+                    res.append((nums[i], nums[lo], nums[hi]))
+                    lo, hi = lo + 1, hi - 1
+                    while lo < hi and nums[lo] == nums[lo-1]:
+                        lo += 1
+                    while lo < hi and nums[hi] == nums[hi+1]:
+                        hi -=1
+                elif summ < 0:
+                    lo += 1
                 else:
-                    l += 1 
+                    hi -= 1
         return res
-
-
-                
-
-
-        
