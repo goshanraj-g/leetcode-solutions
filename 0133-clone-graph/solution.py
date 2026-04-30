@@ -6,24 +6,23 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 """
 
+from typing import Optional
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if node is None:
             return None
-        
-        old_to_new = {}
-        
+
+        cloned = {}
+        visited = set()
+
         def dfs(node):
-            if node in old_to_new:
-                return old_to_new[node]
-            copy = Node(node.val) # create the copy
-            old_to_new[node] = copy # mark it as seen
-
-            for nei in node.neighbors:
-                copy.neighbors.append(dfs(nei))
-            return copy
-
-        return dfs(node)
-
-
-        
+            if node in visited:
+                return None
+            cloned[node.val] = Node(node.val, [])
+            visited.add(node)
+            for neighbor in node.neighbors:
+                dfs(neighbor)
+                cloned[node.val].neighbors.append(cloned[neighbor.val])
+                visited.add(neighbor)
+        dfs(node)
+        return cloned[node.val]
